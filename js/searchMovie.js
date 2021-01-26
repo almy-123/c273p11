@@ -17,25 +17,35 @@ $(document).ready(function () {
             cache: false,
             dataType: "jsonp",
             success: function (response) {
-                
-                var message = "";
-                message += "<b>Title:</b> " + response.Title + "<br/>"
-                        + "<b>Released:</b> " + response.Released + "<br/>"
-                        + "<b>Run Time:</b> " + response.Runtime + "<br/>"
-                        + "<b>Genre:</b> " + response.Genre + "<br/>"
-                        + "<b>Actors:</b> " + response.Actors + "<br/>"
-                        + "<B>Plot:</b> " + response.Plot + "<br/>";
 
-                movieList[movieList.length] = response;
-                localStorage.setItem("movieList", JSON.stringify(movieList));
+                var message = "";
+
+                if (response.Title) {
+
+                    message += "<b>Title:</b> " + response.Title + "<br/>"
+                            + "<b>Released:</b> " + response.Released + "<br/>"
+                            + "<b>Run Time:</b> " + response.Runtime + "<br/>"
+                            + "<b>Genre:</b> " + response.Genre + "<br/>"
+                            + "<b>Actors:</b> " + response.Actors + "<br/>"
+                            + "<B>Plot:</b> " + response.Plot + "<br/>";
+
+                    movieList[movieList.length] = response;
+                    localStorage.setItem("movieList", JSON.stringify(movieList));
+
+                    if (response.Poster !== "N/A") {
+                        var image = "<img src=" + response.Poster + "/>";
+                        $("#poster").html(image);
+                    } else {
+                        $("#poster").html("");
+                    }
+                } else {
+                    message += "No results found.";
+                }
+
+
                 $("#contents").html(message);
 
-                if (response.Poster !== "N/A") {
-                    var image = "<img src=" + response.Poster + "/>";
-                    $("#poster").html(image);
-                } else {
-                    $("#poster").html("");
-                }
+
 
             },
             error: function (obj, textStatus, errorThrown) {
