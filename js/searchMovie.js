@@ -17,6 +17,7 @@ $(document).ready(function () {
             cache: false,
             dataType: "jsonp",
             success: function (response) {
+                
                 var message = "";
                 message += "<b>Title:</b> " + response.Title + "<br/>"
                         + "<b>Released:</b> " + response.Released + "<br/>"
@@ -24,6 +25,7 @@ $(document).ready(function () {
                         + "<b>Genre:</b> " + response.Genre + "<br/>"
                         + "<b>Actors:</b> " + response.Actors + "<br/>"
                         + "<B>Plot:</b> " + response.Plot + "<br/>";
+
                 movieList[movieList.length] = response;
                 localStorage.setItem("movieList", JSON.stringify(movieList));
                 $("#contents").html(message);
@@ -31,7 +33,7 @@ $(document).ready(function () {
                 if (response.Poster !== "N/A") {
                     var image = "<img src=" + response.Poster + "/>";
                     $("#poster").html(image);
-                }else{
+                } else {
                     $("#poster").html("");
                 }
 
