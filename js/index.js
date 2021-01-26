@@ -9,7 +9,6 @@ $(document).ready(function () {
         load_data();
     });
 
-
 });
 function load_data() {
 
@@ -23,7 +22,7 @@ function load_data() {
             var movie = movieList[i];
             message += "<div class='card'>"
                     + "<div class='card-header'>"
-                    + "<b><h5>" + movie.Title +"</h5></b>"
+                    + "<b><h5>" + movie.Title + "</h5></b>"
                     + "<button class='btnDelete btn btn-danger' value=" + i + "><i class='fa fa-trash'></i>Delete</button>"
                     + "</div>"
                     + "<div class='card-body'>"
